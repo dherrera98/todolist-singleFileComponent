@@ -1,28 +1,48 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <headercomp>TodoList</headercomp>
+    <anadirTarea></anadirTarea>
+    <verTareas></verTareas>
+    <footerComp></footerComp>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import headercomp from "./components/HeaderComp.vue";
+import anadirTarea from "./components/AnadirTarea.vue";
+import verTareas from "./components/VerTareas.vue";
+import footerComp from "./components/footerComp.vue";
+import { store } from "./store.js";
 
 export default {
-  name: "app",
   components: {
-    HelloWorld
+    headercomp,
+    anadirTarea,
+    verTareas,
+    footerComp
+  },
+  store,
+  created() {
+    if (localStorage.getItem("tareas")) {
+      this.$store.state.tareas = JSON.parse(localStorage.getItem("tareas"));
+    }
   }
 };
 </script>
 
 <style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+body {
+  background-color: #1e1e1e;
 }
+
+* {
+  font-family: "Roboto", sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+</style>
+
+<style lang="scss">
 </style>
